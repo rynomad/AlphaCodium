@@ -154,7 +154,8 @@ async def solve_problem(dataset_name,
 
     solver = CodeContestsCompetitor()
     os.chdir(base_path)
-    solution = await solver.solve_problem_in_dataset(problem)
+    res = await solver.solve_problem_in_dataset(problem)
+    solution = res['code_recent_solution']
     logger.info(f"testing solution on private tests with prediction:\n{solution}")
 
     logger.info(f"evaluating solution on public tests...")
