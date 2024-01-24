@@ -5,12 +5,12 @@ ai_timeout=90 # seconds
 fallback_models =[]
 verbosity_level=0 # 0,1,2
 private_dataset_cache_dir="~/work/AlphaCodium/alpha_codium"
-max_requests_per_minute=60
+max_requests_per_minute=60000
 
 
 [dataset]
 evaluate_prev_solutions=false
-num_iterations=5 # X iterations to try to solve the problem
+num_iterations=1 # X iterations to try to solve the problem
 use_iteration_scheme=true
 
 [solve]
