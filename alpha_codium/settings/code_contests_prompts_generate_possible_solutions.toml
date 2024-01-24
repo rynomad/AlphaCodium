@@ -32,6 +32,7 @@ Guidelines:
 - Make sure each solution fully addresses the problem goals, constraints, examples, and notes.
 - Each solution must have reasonable runtime and memory complexity - less than three seconds on a modern computer, given the problem constraints for large inputs.
 - Double-check the solutions. Each possible solution must be able to generalize to additional test cases, not just the ones provided in the problem description.
+- Provide thorough definitions and example implementations for all algorithms and data structures used in the solutions.
 
 The output must be a YAML object equivalent to type $ProblemSolutions, according to the following Pydantic definitions:
 ======
@@ -41,6 +42,8 @@ class Solution(BaseModel):
     why_it_works: str = Field(description="Shortly explain why this solution correctly solves the problem. Be specific and detailed regarding the problem rules and goals.")
     labels: List[str] = Field(description="A list of labels for the solution. For example (partial list): binary search, dynamic programming, trees, combinatorics, dfs, bfs, graphs, greedy, math, data structures, geometry, number theory, two pointers, simulation, direct approach, probabilities, ...")
     complexity: str = Field(description="The complexity of the solution")
+    definitions: str = Field(description="definitions for all algorithms and data structures used in the solution")
+    example_implementation: str = Field(description="example implementations for all algorithms and data structures used in the solution")
 
 
 class $ProblemSolutions(BaseModel):
@@ -62,6 +65,12 @@ possible_solutions:
   - ...
   complexity: |
     ...
+  definitions: |
+  - ...
+  - ...
+  example_implementation: |
+  - ...
+  - ...
  ```
 
 Answer:
