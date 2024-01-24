@@ -114,6 +114,7 @@ async def run_evaluate_public_tests(self, problem):
                 #         # logger.error(f'Public test -  Reverting to best solution so far, d_tot: {best_d}')
                 #         # problem['code_recent_solution'] = best_solution
                 all_passed_public = all_passed_public and passed_specific_test
+                problem['number_of_llm_fixes_public'] = number_of_llm_fixes
 
             if all_passed_public:
                 logger.info(f"==================")

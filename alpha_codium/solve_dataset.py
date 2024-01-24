@@ -1,4 +1,5 @@
 import argparse
+import asyncio
 
 from alpha_codium.gen.dataset_solver import solve_dataset
 from alpha_codium.log import get_logger, setup_logger
@@ -19,6 +20,6 @@ if __name__ == "__main__":
         args.database_solution_path = f"./{args.dataset_name}_{args.split_name}_solution_database.json"
         logger.info(f"args.database_solution_path: {args.database_solution_path}")
 
-    solve_dataset(dataset_name=args.dataset_name,
+    asyncio.run(solve_dataset(dataset_name=args.dataset_name,
                   split_name=args.split_name,
-                  database_solution_path=args.database_solution_path)
+                  database_solution_path=args.database_solution_path))

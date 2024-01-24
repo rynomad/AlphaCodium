@@ -86,19 +86,18 @@ class CodeContestsCompetitor:
 
                 # evaluate on ai tests
                 problem = await run_evaluate_all_ai_tests(self, problem)
-
-            return problem['code_recent_solution']
+            return problem
         except Exception as e:
             logging.error(f"Error: {e}")
-            return ""
+            return {'code_recent_solution': ''}
 
-    def solve_problem_in_dataset(self, example, iteration=0, logger_ext=None):
+    async def solve_problem_in_dataset(self, example, iteration=0, logger_ext=None):
         problem = {k: example.get(k) for k in ["name", "description", 'public_tests']}
-        prediction = asyncio.run(self.run(problem=problem, iteration=iteration, logger_ext=logger_ext))
+        prediction = await self.run(problem=problem, iteration=iteration, logger_ext=logger_ext)
         return prediction
 
 
-def solve_problem(dataset_name,
+async def solve_problem(dataset_name,
                   split_name="valid",
                   problem_name="",
                   problem_number=0):
@@ -155,7 +154,7 @@ def solve_problem(dataset_name,
 
     solver = CodeContestsCompetitor()
     os.chdir(base_path)
-    solution = solver.solve_problem_in_dataset(problem)
+    solution = await solver.solve_problem_in_dataset(problem)
     logger.info(f"testing solution on private tests with prediction:\n{solution}")
 
     logger.info(f"evaluating solution on public tests...")

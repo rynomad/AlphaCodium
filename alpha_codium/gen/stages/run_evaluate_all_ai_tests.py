@@ -15,7 +15,7 @@ async def run_evaluate_all_ai_tests(self, problem):
 
         ai_tests = problem['problem_ai_tests']
         max_allowed_calls = get_settings().get("ai_tests.max_allowed_calls", 6)
-
+        public_tests_passed = len(problem['passed_tests']['input'])
         # evaluate ai tests
         actual_number_of_calls = 0
         for i, test in enumerate(ai_tests):
@@ -77,6 +77,10 @@ async def run_evaluate_all_ai_tests(self, problem):
                     else:
                         logger.info(f"Code doesnt crash, but still fails the test. using new solution")
 
+        problem['number_of_llm_fixes_ai'] = actual_number_of_calls
+        problem['ai_tests_total'] = len(ai_tests)
+        problem['ai_tests_passed'] = len(problem['passed_tests']['inputs']) - public_tests_passed
+        
         return problem
     except Exception as e:
         logging.error(f"Error in 'run_evaluate_all_ai_tests': {e}")

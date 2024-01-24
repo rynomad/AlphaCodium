@@ -14,7 +14,7 @@ from alpha_codium.settings.config_loader import get_settings
 from alpha_codium.log import get_logger
 
 logger = get_logger(__name__)
-OPENAI_RETRIES = 5
+OPENAI_RETRIES = 20
 
 
 class AiHandler:
