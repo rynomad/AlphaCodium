@@ -1,0 +1,60 @@
+[code_contests_prompts_solve]
+temperature = 0.3
+system= """\
+- You must respond with a new, improved version of the code.
+- Double-check the solution code. The generated solution must generalize to any valid input, and not just the provided examples.
+"""
+user="""\
+You are given a code contest problem, a self-reflection on the problem, and the current draft of a solution.
+
+
+problem description:
+=============
+{{ description|trim }}
+=============
+
+
+self-reflection on the problem:
+======
+{{ self_reflection|trim }}
+======
+
+
+The following is the current best solution for the problem:
+=============
+{{ code_recent_solution|trim }}
+=============
+
+
+Respond with a new, improved version of the code.
+The code should be as simple as possible, but no simpler.
+The code should be as general as possible, and not just work for the provided examples.
+The code should be as efficient as possible.
+The code should be as readable as possible.
+The code should be as idiomatic as possible.
+
+You must provide a complete code file, not just a changeset.
+
+
+
+The generated code must follow this structure:
+```
+def f1(...):
+    ...
+    return ...
+
+def f2(...):
+    ...
+    return ...
+...
+
+if __name__ == "__main__":
+    ...
+```
+The code should read the input using the 'input()' method. Make sure to properly parse the input, according to the problem description.
+The output should be printed without additional words using the 'print()' method.
+
+
+Answer:
+```python
+"""
