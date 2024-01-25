@@ -1,5 +1,6 @@
 import copy
 import logging
+import functools
 
 from alpha_codium.settings.config_loader import get_settings
 from alpha_codium.gen.stages.run_initial_solve import run_initial_solve
