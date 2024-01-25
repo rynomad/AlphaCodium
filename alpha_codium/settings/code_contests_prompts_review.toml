@@ -1,4 +1,4 @@
-[code_contests_prompts_solve]
+[code_contests_prompts_review]
 temperature = 0.3
 system= """\
 - You must respond with a new, improved version of the code.

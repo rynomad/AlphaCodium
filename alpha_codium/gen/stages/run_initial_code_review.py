@@ -2,6 +2,7 @@ import copy
 import logging
 import functools
 
+from alpha_codium.llm.ai_invoker import send_inference
 from alpha_codium.settings.config_loader import get_settings
 from alpha_codium.gen.stages.run_initial_solve import run_initial_solve
 from alpha_codium.gen.stages.run_tests import run_tests
@@ -20,7 +21,7 @@ async def run_initial_code_review(self, problem):
             counter = 0
 
             for i in range(max_attempts):
-                f = functools.partial(self._run, problem=problem, prompt="code_contests_prompt_initial_code_review")
+                f = functools.partial(self._run, problem=problem, prompt="code_contests_prompts_review")
                 response_solve, _ = await send_inference(f)
 
                 # clean up the response
