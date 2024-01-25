@@ -31,9 +31,9 @@ def evaluate_dataset_solution(dataset_name='valid_and_test_processed',
             key_str = sol
             key_int = int(key_str)
             problem = ds[key_int]
-            if problem.get('is_valid_problem', True) is False:
-                print(f"problem {key_int} is not valid")
-                continue
+            # if problem.get('is_valid_problem', True) is False:
+            #     print(f"problem {key_int} is not valid")
+            #     continue
             solution = database_solutions[split_name][sol]
             passed_current = -1
 

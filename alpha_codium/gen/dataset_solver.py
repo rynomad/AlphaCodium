@@ -81,14 +81,14 @@ async def solve_problem(problem_number, database, split_name, data_provider, set
 
     num_iterations =  setting.get("dataset.num_iterations", 1)
     prev = database[split_name].get(str(problem_number), {}).get(f'iteration_{num_iterations-1}', {})
-    # if not ((prev == {}) or (prev is None)):
-    #     print(f"problem_number {problem_number} already ran")
-    #     return
+    if not ((prev == {}) or (prev is None)):
+        print(f"problem_number {problem_number} already ran")
+        return
 
     # check if problem is valid (at least one of the provided solutions actually passes the generated tests)
-    if data_provider.dataset[split_name][problem_number].get('is_valid_problem', True) is False:
-        logger.info(f"problem {problem_number} is not valid")
-        return
+    # if data_provider.dataset[split_name][problem_number].get('is_valid_problem', True) is False:
+    #     logger.info(f"problem {problem_number} is not valid")
+    #     return
 
     os.chdir(base_path)
     logger.info(f"problem_number: {problem_number}")
@@ -131,7 +131,12 @@ async def solve_dataset(dataset_name='valid_and_test_processed',
         print(f"Failed to load database from {database_solution_path}")
         database = {split_name: {}}
 
-    tasks = [solve_problem(problem_number, database, split_name, data_provider, setting, base_path, database_solution_path) for problem_number in range(0, num_problems)]
+    tasks = [solve_problem(problem_number, database, split_name, data_provider, setting, base_path, database_solution_path) for problem_number in [
+   0,  3,  5,  6,   8,   9,  11,  14,  16,  17,
+  22, 25, 27, 30,  31,  32,  33,  34,  38,  43,
+  52, 53, 60, 61,  62,  66,  68,  73,  83,  84,
+  85, 89, 96, 98, 105, 106, 107, 108, 112, 113
+]]
 
     await asyncio.gather(*tasks)
 
