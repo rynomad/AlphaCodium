@@ -1,6 +1,6 @@
 [config]
-#model="gpt-4-0613"
-model = "gpt-3.5-turbo-16k"
+model="gpt-4-1106-preview"
+#model = "gpt-3.5-turbo-16k"
 ai_timeout=90 # seconds
 fallback_models =[]
 verbosity_level=0 # 0,1,2
@@ -20,6 +20,9 @@ use_direct_solutions=false
 
 [self_reflection]
 validate_self_reflection=false
+
+[initial_code_review]
+iterations=1
 
 [possible_solutions]
 max_num_of_possible_solutions=3
